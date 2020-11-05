@@ -13,7 +13,7 @@ COPY Gemfile.lock .
 RUN apt update \
 	&& apt install ruby ruby-dev build-essential libffi-dev zlib1g-dev \
 	   liblzma-dev nodejs patch \
-	&& gem update --system
+	&& gem update --system \
 	&& gem install bundler
 
 COPY . /srv/slate
