@@ -26,6 +26,8 @@ Vous trouverez ci-dessous des exemples avec différents langages de programmatio
 
 # Authentication
 
+##Obtenir une clé JWT
+
 > To authenticate, use this code:
 
 ```java
@@ -42,18 +44,32 @@ curl -X POST "http://51.38.42.38:8080/ws/authenticate" -H "accept: application/j
 code javascript
 ```
 
-> Assurez vous de remplacer `meowmeowmeow` par votre clé API.
+> Le code ci-dessus retourne un contenu JSON structuré comme ci-contre:
+
+```json
+{
+  "jwttoken": "seXIw2WRL5H0iLNNGzVfLPs5OF5puKuYjPRUma4GQVxIvT-659uWfVir5CNd7IOmH5ow"
+}
+```
 
 Empata utilise un token JWT pour autoriser l'accès à son API. le endpoint authenticate permet d'obtenir ledit token, pour ce faire vous devez fournir les paramètres ci-dessous dans une requète POST.
 
-le username et password correspondent à l'adresse mail et le mot de passe avec lesquels vous avez créer votre compte sur le site <a href='https://empata.snedac.com'>empata.snedac.com</a>
+### HTTP Request
 
-Empata attends la clé JWT dans l'entete Authorization de toutes les requetes vers le serveur, comme ci-dessous:
+`POST http://51.38.42.38:8080/ws/authenticate`
 
-`Authorization: Bearer jwttoken`
+### Query Parameters
+
+Paramètre | Requis | Description
+--------- | ------- | -----------
+application | Oui | Votre clé API fournie par Empata
+password | Oui | Mot de passe de votre compte Empata
+username | Oui | Adresse mail de votre compte Empata
 
 <aside class="notice">
-Assurez vous de remplacer <code>meowmeowmeow</code> par votre clé API personnelle.
+Empata attends la clé JWT dans l'entete Authorization de toutes les requetes vers le serveur, comme ci-dessous:
+`Authorization: Bearer jwttoken`
+La durée de vie du token ainsi obtenu est de 05 heures.
 </aside>
 
 # Kittens
