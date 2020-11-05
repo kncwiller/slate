@@ -20,39 +20,40 @@ code_clipboard: true
 
 # Introduction
 
-Bienvenue dans l'APi Empata! Vous pouvez utiliser les endpoints de l'API Empata pour faire réaliser différents types d'opérations de paiement via votre porte feuille électronique.
+Bienvenue dans l'APi Empata! Vous pouvez utiliser les endpoints de l'API Empata pour réaliser différents types d'opérations de paiement via votre porte feuille électronique.
 
-Vous trouverez ci-dessous des exemples avec différents langages de programmation Shell, Java, and JavaScript! Vous pouvez voir le code exemple dans la zone noire à droite.
+Vous trouverez ci-dessous des exemples avec différents langages de programmation Shell, Java, et JavaScript! Vous pouvez voir le code exemple dans la zone noire à droite.
 
 # Authentication
 
-> To authorize, use this code:
+> To authenticate, use this code:
 
 ```java
 code java
 ```
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl -X POST "http://51.38.42.38:8080/ws/authenticate" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"application\": \"meowmeowmeow\", \"password\": \"mysecret\", \"username\": \"user@partner.com\"}"
+curl -X POST "http://51.38.42.38:8080/ws/authenticate" -H "accept: application/json" \
+ -H "Content-Type: application/json" \ 
+ -d "{ \"application\": \"meowmeowmeow\", \"password\": \"mysecret\", \"username\": \"user@partner.com\"}"
 ```
 
 ```javascript
 code javascript
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Assurez vous de remplacer `meowmeowmeow` par votre clé API.
 
-Empata utilise un token JWT pour autoriser l'accès à son API. le endpoint authenticate permet d'obtenir ledit token, pour ce faire vous devez fournir les paramètres ci-dessus dans une requète POST.
+Empata utilise un token JWT pour autoriser l'accès à son API. le endpoint authenticate permet d'obtenir ledit token, pour ce faire vous devez fournir les paramètres ci-dessous dans une requète POST.
 
-le username et password (correspondent à l'adresse mail et le mot de passe avec lesquels vous avez créer votre compte sur le site <a href='https://empata.snedac.com'>empata.snedac.com</a>)
+le username et password correspondent à l'adresse mail et le mot de passe avec lesquels vous avez créer votre compte sur le site <a href='https://empata.snedac.com'>empata.snedac.com</a>
 
 Empata attends la clé JWT dans l'entete Authorization de toutes les requetes vers le serveur, comme ci-dessous:
 
 `Authorization: Bearer jwttoken`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+Assurez vous de remplacer <code>meowmeowmeow</code> par votre clé API personnelle.
 </aside>
 
 # Kittens
