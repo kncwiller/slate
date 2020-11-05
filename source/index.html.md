@@ -20,13 +20,13 @@ code_clipboard: true
 
 # Introduction
 
-Welcome in Empata API! You can use this API endpoints to made differents payment operations via your virtual wallet.
+Welcome in Empata API! You can use this API endpoints to made differents payment operations via your Empata wallet.
 
-You will found below examples with differents programmation languages like Shell, Java and JavaScript! You can view the example code in the dark ight zone.
+You will found below examples with differents programmation languages like Shell, Java and JavaScript! You can view the example code in the dark right zone.
 
 # Authentication
 
-##Obtenir une clé JWT
+##Obtain your JWT key
 
 > To authenticate, use this code:
 
@@ -66,7 +66,7 @@ application | Yes | Your API Key given by Empata
 password | Yes | Your Empata's account password
 username | Yes | Your Empata's account email
 
-Empata expect a JWT token int all request's header made to his server, as below:
+Empata expect a JWT token in all request's header made to his server, as below:
 
 `Authorization: Bearer jwttoken`
 
