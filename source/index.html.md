@@ -66,6 +66,10 @@ application | Oui | Votre clé API fournie par Empata
 password | Oui | Mot de passe de votre compte Empata
 username | Oui | Adresse mail de votre compte Empata
 
+Empata attends la clé JWT dans l'entete Authorization de toutes les requetes vers le serveur, comme ci-dessous:
+
+`Authorization: Bearer jwttoken`
+
 <aside class="notice">
 La durée de vie du token ainsi obtenu est de 05 heures.
 </aside>
