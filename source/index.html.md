@@ -3,13 +3,12 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
+  - java
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+  - <a href='https://empata.snedac.com'>Inscrivez vous pour obtenir vos paramètres d'authentification</a>
+  - <a href='#'>Veuillez nous contacter pour obtenir votre clé API</a>
 
 includes:
   - errors
@@ -21,47 +20,36 @@ code_clipboard: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Bienvenue dans l'APi Empata! Vous pouvez utiliser les endpoints de l'API Empata pour faire réaliser différents types d'opérations de paiement via votre porte feuille électronique.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Vous trouverez ci-dessous des exemples avec différents langages de programmation Shell, Java, and JavaScript! Vous pouvez voir le code exemple dans la zone noire à droite.
 
 # Authentication
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
+```java
+code java
 ```
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
+curl -X POST "http://51.38.42.38:8080/ws/authenticate" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"application\": \"meowmeowmeow\", \"password\": \"mysecret\", \"username\": \"user@partner.com\"}"
 ```
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
+code javascript
 ```
 
 > Make sure to replace `meowmeowmeow` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+Empata utilise un token JWT pour autoriser l'accès à son API. le endpoint authenticate permet d'obtenir ledit token, pour ce faire vous devez fournir les paramètres ci-dessus dans une requète POST.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+le username et password (correspondent à l'adresse mail et le mot de passe avec lesquels vous avez créer votre compte sur le site <a href='https://empata.snedac.com'>empata.snedac.com</a>)
 
-`Authorization: meowmeowmeow`
+Empata attends la clé JWT dans l'entete Authorization de toutes les requetes vers le serveur, comme ci-dessous:
+
+`Authorization: Bearer jwttoken`
 
 <aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
