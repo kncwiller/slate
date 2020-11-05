@@ -7,8 +7,8 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
 
 toc_footers:
-  - <a href='https://empata.snedac.com'>Inscrivez vous pour obtenir vos paramètres d'authentification</a>
-  - <a href='#'>Veuillez nous contacter pour obtenir votre clé API</a>
+  - <a href='https://empata.snedac.com'>Sign up to obtain your credentials</a>
+  - <a href='#'>Please contact us to obtain your API key</a>
 
 includes:
   - errors
@@ -20,9 +20,9 @@ code_clipboard: true
 
 # Introduction
 
-Bienvenue dans l'APi Empata! Vous pouvez utiliser les endpoints de l'API Empata pour réaliser différents types d'opérations de paiement via votre porte feuille électronique.
+Welcome in Empata API! You can use this API endpoints to made differents payment operations via your virtual wallet.
 
-Vous trouverez ci-dessous des exemples avec différents langages de programmation Shell, Java, et JavaScript! Vous pouvez voir le code exemple dans la zone noire à droite.
+You will found below examples with differents programmation languages like Shell, Java and JavaScript! You can view the example code in the dark ight zone.
 
 # Authentication
 
@@ -31,7 +31,7 @@ Vous trouverez ci-dessous des exemples avec différents langages de programmatio
 > To authenticate, use this code:
 
 ```java
-code java
+#code java
 ```
 
 ```shell
@@ -41,10 +41,10 @@ curl -X POST "http://51.38.42.38:8080/ws/authenticate" -H "accept: application/j
 ```
 
 ```javascript
-code javascript
+#code javascript
 ```
 
-> Le code ci-dessus retourne un contenu JSON structuré comme ci-contre:
+> The code above return a JSON content structured like below:
 
 ```json
 {
@@ -52,7 +52,7 @@ code javascript
 }
 ```
 
-Empata utilise un token JWT pour autoriser l'accès à son API. le endpoint authenticate permet d'obtenir ledit token, pour ce faire vous devez fournir les paramètres ci-dessous dans une requète POST.
+Empata uses a JWT token to authorize his API access. The authenticate endpoint permit to obtain this token, to get it, you need to fill in a POST request with below parameters.
 
 ### HTTP Request
 
@@ -60,114 +60,79 @@ Empata utilise un token JWT pour autoriser l'accès à son API. le endpoint auth
 
 ### Query Parameters
 
-Paramètre | Requis | Description
+Parameter | Rquired | Description
 --------- | ------- | -----------
-application | Oui | Votre clé API fournie par Empata
-password | Oui | Mot de passe de votre compte Empata
-username | Oui | Adresse mail de votre compte Empata
+application | Yes | Your API Key given by Empata
+password | Yes | Your Empata's account password
+username | Yes | Your Empata's account email
 
-Empata attends la clé JWT dans l'entete Authorization de toutes les requetes vers le serveur, comme ci-dessous:
+Empata expect a JWT token int all request's header made to his server, as below:
 
 `Authorization: Bearer jwttoken`
 
 <aside class="notice">
-La durée de vie du token ainsi obtenu est de 05 heures.
+The generated token time to live is 05 hours.
 </aside>
 
-# Kittens
+# Operations
 
-## Get All Kittens
+## made a payment
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+```java
+#code java
 ```
 
 ```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
+curl -X POST "http://51.38.42.38:8080/ws/operation/transfer" -H "accept: application/json" \
+ -H "Content-Type: application/json" -H "Authorization: Bearer jwttoken" \ 
+ -d "{ \"sender\": \"string\", \"receiver\": \"string\", \"operationType\":0, \"amount\": 0,\"currency\": \"string\", \ 
+ \"feesIn\": \"false\",\"date\": \"2020-11-03T13:36:03\",\"description\": \"string\"}"
 ```
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+#code javascript
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+  "jwttoken": "seXIw2WRL5H0iLNNGzVfLPs5OF5puKuYjPRUma4GQVxIvT-659uWfVir5CNd7IOmH5ow"
+}
 ```
 
-This endpoint retrieves all kittens.
+This endpoint is used to made a payment (Account to Account transfer)
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`POST http://51.38.42.38:8080/ws/operation/transfer`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Required | Type | Description
+--------- | ------- | ----------------- | -------------
+sender | Yes | string | sender’s account number/phone number (your customer)
+receiver | Yes | string | receiver’s account number/phone number (merchant)
+operationType | Yes | int | operation type id
+amount | Yes | double | amount to pay
+currency | Yes | string | payment currency iso code. Default value: CDF
+feesIn | Yes | boolean | true/false (fees include in transaction amount or not)
+date | Yes | Date | merchant operation date. format: yyyy-MM-ddTHH:mm:ss
+description | Yes | string | description
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+## Get a Specific Payment
 
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
+```java
+#code java
 ```
 
 ```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
+curl "http://51.38.42.38:8080/ws/operation/{id}" \
+  -H "Authorization: Bearer jwttoken"
 ```
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+#code javascript
 ```
 
 > The above command returns JSON structured like this:
@@ -182,7 +147,7 @@ let max = api.kittens.get(2);
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint retrieves a specific payment.
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
@@ -198,18 +163,8 @@ ID | The ID of the kitten to retrieve
 
 ## Delete a Specific Kitten
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
+```java
+#code java
 ```
 
 ```shell
@@ -219,10 +174,7 @@ curl "http://example.com/api/kittens/2" \
 ```
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+#code javascript
 ```
 
 > The above command returns JSON structured like this:
