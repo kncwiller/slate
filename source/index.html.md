@@ -66,7 +66,7 @@ The generated token time to live is 05 hours.
 
 # Operations
 
-## made a transfert
+## make a transfert
 
 ```shell
 curl -X POST "http://51.38.42.38:8080/ws/operation/transfer" -H "accept: application/json" \
@@ -93,16 +93,16 @@ This endpoint is used to made a payment (Account to Account transfer)
 
 Parameter | Required | Type | Description
 --------- | ------- | ----------------- | -------------
-sender | Yes | string | sender’s account number/phone number (your customer)
-receiver | Yes | string | receiver’s account number/phone number (merchant)
-operationType | Yes | int | operation type id
+sender | Yes | string | sender’s account number/phone number (merchant)
+receiver | Yes | string | receiver’s account number/phone number (your customer)
+operationType | Yes | int | operation type id. value is 3
 amount | Yes | double | amount to pay
 currency | Yes | string | payment currency iso code. Default value: CDF
 feesIn | Yes | boolean | true/false (fees include in transaction amount or not)
 date | Yes | Date | merchant operation date. format: yyyy-MM-ddTHH:mm:ss
-description | Yes | string | description
+description | false | string | description
 
-## Get a Specific Payment
+## make a deposit
 
 ```shell
 curl "http://51.38.42.38:8080/ws/operation/{id}" \
@@ -121,19 +121,24 @@ curl "http://51.38.42.38:8080/ws/operation/{id}" \
 }
 ```
 
-This endpoint retrieves a specific payment.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint is used to make a deposit a E-mpata user account.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`POST http://51.38.42.38:8080/ws/operation/transfer`
 
-### URL Parameters
+### Query Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Parameter | Required | Type | Description
+--------- | ------- | ----------------- | -------------
+sender | Yes | string | sender’s account number/phone number (merchant)
+account | Yes | string | receiver’s account number/phone number (your customer)
+operationType | Yes | int | operation type id. value is 1
+amount | Yes | double | deposit amount
+currency | Yes | string | payment currency iso code. Default value: CDF
+feesIn | Yes | boolean | true/false (fees include in transaction amount or not)
+date | Yes | Date | merchant operation date. format: yyyy-MM-ddTHH:mm:ss
+description | false | string | description
 
 ## Delete a Specific Kitten
 
