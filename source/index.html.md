@@ -105,8 +105,10 @@ description | false | string | description
 ## make a deposit
 
 ```shell
-curl "http://51.38.42.38:8080/ws/operation/{id}" \
-  -H "Authorization: Bearer jwttoken"
+curl -X POST "http://51.38.42.38:8080/ws/operation/deposit" -H "accept: application/json" \
+ -H "Content-Type: application/json" -H "Authorization: Bearer jwttoken" \ 
+ -d "{ \"sender\": \"string\", \"account\": \"string\", \"operationType\":0, \"amount\": 0,\"currency\": \"string\", \ 
+ \"feesIn\": \"false\",\"date\": \"2020-11-03T13:36:03\",\"description\": \"string\"}"
 ```
 
 > The above command returns JSON structured like this:
@@ -125,7 +127,7 @@ This endpoint is used to make a deposit a E-mpata user account.
 
 ### HTTP Request
 
-`POST http://51.38.42.38:8080/ws/operation/transfer`
+`POST http://51.38.42.38:8080/ws/operation/deposit`
 
 ### Query Parameters
 
@@ -139,33 +141,4 @@ currency | Yes | string | payment currency iso code. Default value: CDF
 feesIn | Yes | boolean | true/false (fees include in transaction amount or not)
 date | Yes | Date | merchant operation date. format: yyyy-MM-ddTHH:mm:ss
 description | false | string | description
-
-## Delete a Specific Kitten
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
 
