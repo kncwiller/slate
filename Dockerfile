@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ruby:2.6-slim
 
 WORKDIR /srv/slate
 
@@ -9,15 +9,20 @@ EXPOSE 4567
 
 COPY Gemfile .
 COPY Gemfile.lock .
-COPY . /srv/slate
 
-RUN apt update \
-	&& apt install -y ruby ruby-dev build-essential libffi-dev zlib1g-dev \
-	   liblzma-dev nodejs patch \
-	&& gem update --system \
-	&& gem install -y bundler \
-	&& bundle install
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        build-essential \
+        nodejs \
+    && gem install bundler \
+    && bundle install \
+    && apt-get remove -y build-essential \
+    && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY . /srv/slate
 
 RUN chmod +x /srv/slate/slate.sh
 
-CMD ["bundle exec middleman server"]
+ENTRYPOINT ["/srv/slate/slate.sh"]
+CMD ["server"]

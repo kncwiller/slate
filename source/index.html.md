@@ -3,8 +3,6 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - java
-  - javascript
 
 toc_footers:
   - <a href='https://empata.snedac.com'>Sign up to obtain your credentials</a>
@@ -30,18 +28,10 @@ You will found below examples with differents programmation languages like Shell
 
 > To authenticate, use this code:
 
-```java
-#code java
-```
-
 ```shell
 curl -X POST "http://51.38.42.38:8080/ws/authenticate" -H "accept: application/json" \
  -H "Content-Type: application/json" \ 
  -d "{ \"application\": \"meowmeowmeow\", \"password\": \"mysecret\", \"username\": \"user@partner.com\"}"
-```
-
-```javascript
-#code javascript
 ```
 
 > The code above return a JSON content structured like below:
@@ -76,21 +66,13 @@ The generated token time to live is 05 hours.
 
 # Operations
 
-## made a payment
-
-```java
-#code java
-```
+## made a transfert
 
 ```shell
 curl -X POST "http://51.38.42.38:8080/ws/operation/transfer" -H "accept: application/json" \
  -H "Content-Type: application/json" -H "Authorization: Bearer jwttoken" \ 
  -d "{ \"sender\": \"string\", \"receiver\": \"string\", \"operationType\":0, \"amount\": 0,\"currency\": \"string\", \ 
  \"feesIn\": \"false\",\"date\": \"2020-11-03T13:36:03\",\"description\": \"string\"}"
-```
-
-```javascript
-#code javascript
 ```
 
 > The above command returns JSON structured like this:
@@ -122,17 +104,9 @@ description | Yes | string | description
 
 ## Get a Specific Payment
 
-```java
-#code java
-```
-
 ```shell
 curl "http://51.38.42.38:8080/ws/operation/{id}" \
   -H "Authorization: Bearer jwttoken"
-```
-
-```javascript
-#code javascript
 ```
 
 > The above command returns JSON structured like this:
@@ -163,18 +137,10 @@ ID | The ID of the kitten to retrieve
 
 ## Delete a Specific Kitten
 
-```java
-#code java
-```
-
 ```shell
 curl "http://example.com/api/kittens/2" \
   -X DELETE \
   -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-#code javascript
 ```
 
 > The above command returns JSON structured like this:
