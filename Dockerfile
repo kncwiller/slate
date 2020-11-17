@@ -1,18 +1,22 @@
-FROM ruby:2.6-slim
+FROM ubuntu
 
-WORKDIR /srv/slate
+WORKDIR /app
 
-VOLUME /srv/slate/build
-VOLUME /srv/slate/source 
+COPY Gemfile /app/Gemfile
+COPY Gemfile.lock /app/Gemfile.lock
+
+VOLUME /app/build
+VOLUME /app/source 
 
 EXPOSE 4567
 
-COPY . /srv/slate
+COPY . /app
 
-RUN chmod +x /srv/slate/slate.sh
+RUN chmod +x /app/slate.sh
 
 RUN apt-get update \
-    && apt-get install -y ruby-dev \
+    && apt-get install -y ruby \
+	    ruby-dev \
 		build-essential \
         libffi-dev \
 		zlib1g-dev \
@@ -23,4 +27,4 @@ RUN apt-get update \
     && gem install bundler \
     && bundle install
 
-ENTRYPOINT ["bundle exec middleman server"]
+CMD ["bundle exec middleman server"]
