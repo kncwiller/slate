@@ -1,29 +1,28 @@
 FROM ruby:2.7-slim
 
-WORKDIR /app
+WORKDIR /srv/slate
 
-COPY Gemfile /app/Gemfile
-COPY Gemfile.lock /app/Gemfile.lock
-
-VOLUME /app/build
-VOLUME /app/source 
+VOLUME /srv/slate/build
+VOLUME /srv/slate/source
 
 EXPOSE 4567
 
-COPY . /app
-
-RUN chmod +x /app/slate.sh
+COPY Gemfile .
+COPY Gemfile.lock .
 
 RUN apt-get update \
-    && apt-get install -y ruby-dev \	    
-		build-essential \
-        libffi-dev \
-		zlib1g-dev \
-		liblzma-dev \
+    && apt-get install -y --no-install-recommends \
+        build-essential \
         nodejs \
-		patch \
-	&& gem update --system \
     && gem install bundler \
-    && bundle install
+    && bundle install \
+    && apt-get remove -y build-essential \
+    && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/*
 
-CMD ["bundle exec middleman server"]
+COPY . /srv/slate
+
+RUN chmod +x /srv/slate/slate.sh
+
+ENTRYPOINT ["/srv/slate/slate.sh"]
+CMD ["build"]
