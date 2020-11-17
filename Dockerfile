@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ruby:2.7-slim
 
 WORKDIR /app
 
@@ -15,8 +15,7 @@ COPY . /app
 RUN chmod +x /app/slate.sh
 
 RUN apt-get update \
-    && apt-get install -y ruby \
-	    ruby-dev \
+    && apt-get install -y ruby-dev \	    
 		build-essential \
         libffi-dev \
 		zlib1g-dev \
