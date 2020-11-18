@@ -11,3 +11,4 @@ Error Code | Meaning
 404 | Not Found -- The specified object could not be found.
 405 | Method Not Allowed -- You tried to access an object with an invalid method.
 406 | Not Acceptable -- You requested a format that isn't json
+500 | API Internal Error

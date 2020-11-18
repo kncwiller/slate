@@ -69,7 +69,7 @@ The generated token time to live is 05 hours.
 ## make a transfert
 
 ```shell
-curl -X POST "http://51.38.42.38:8080/ws/operation/transfer" -H "accept: application/json" \
+curl -X POST "http://51.38.42.38:8080/ws/partner/transfer" -H "accept: application/json" \
  -H "Content-Type: application/json" -H "Authorization: Bearer jwttoken" \ 
  -d "{ \"sender\": \"string\", \"receiver\": \"string\", \"operationType\":0, \"amount\": 0,\"currency\": \"string\", \ 
  \"feesIn\": \"false\",\"date\": \"2020-11-03T13:36:03\",\"description\": \"string\"}"
@@ -79,165 +79,19 @@ curl -X POST "http://51.38.42.38:8080/ws/operation/transfer" -H "accept: applica
 
 ```json
 {
-  "account": {
-    "accountId": 0,
-    "accountType": {
-      "accountTypeId": 0,
-      "libelle": "string"
-    },
-    "activationCode": "string",
-    "active": true,
-    "country": "string",
-    "createDate": "2020-11-16T15:24:11.700Z",
-    "currency": "string",
-    "expire": "2020-11-16T15:24:11.700Z",
-    "idNational": "string",
-    "msisdn": "string",
-    "nomEntreprise": "string",
-    "numero": "string",
-    "pin": "string",
-    "rccm": "string",
-    "solde": 0,
-    "soldeEntreprise": 0,
-    "updateDate": "2020-11-16T15:24:11.700Z",
-    "user": {
-      "actif": true,
-      "activationCode": "string",
-      "address": "string",
-      "blacklist": true,
-      "creationDate": "2020-11-16T15:24:11.700Z",
-      "email": "string",
-      "firstName": "string",
-      "lastLogin": "2020-11-16T15:24:11.700Z",
-      "lastName": "string",
-      "msisdn": "string",
-      "nickName": "string",
-      "nombre": 0,
-      "pays": "string",
-      "platform": "string",
-      "profil": "User",
-      "raisonSocial": "string",
-      "secondaryAddress": "string",
-      "userId": 0
+    "operationId": 235,
+    "reference": "Z99G4VSEI0",
+    "amount": 200,
+    "fees": 10,
+    "description": "test usd",
+    "operationDate": "2020-10-29T05:14:07.000+0000",
+    "status": "SUCCESS",
+    "sender": "9876543",
+    "receiver": "0200000001",
+    "operationType": {
+        "operationTypeId": 3,
+        "libelle": "M-Mpata vers M-Mpata"
     }
-  },
-  "administrator": "string",
-  "amount": 0,
-  "arrivee": "string",
-  "bulk": true,
-  "bulkId": "string",
-  "bulkPayment": 0,
-  "codeSms": "string",
-  "depart": "string",
-  "description": "string",
-  "entreprise": {
-    "accountId": 0,
-    "accountType": {
-      "accountTypeId": 0,
-      "libelle": "string"
-    },
-    "activationCode": "string",
-    "active": true,
-    "country": "string",
-    "createDate": "2020-11-16T15:24:11.700Z",
-    "currency": "string",
-    "expire": "2020-11-16T15:24:11.700Z",
-    "idNational": "string",
-    "msisdn": "string",
-    "nomEntreprise": "string",
-    "numero": "string",
-    "pin": "string",
-    "rccm": "string",
-    "solde": 0,
-    "soldeEntreprise": 0,
-    "updateDate": "2020-11-16T15:24:11.700Z",
-    "user": {
-      "actif": true,
-      "activationCode": "string",
-      "address": "string",
-      "blacklist": true,
-      "creationDate": "2020-11-16T15:24:11.700Z",
-      "email": "string",
-      "firstName": "string",
-      "lastLogin": "2020-11-16T15:24:11.700Z",
-      "lastName": "string",
-      "msisdn": "string",
-      "nickName": "string",
-      "nombre": 0,
-      "pays": "string",
-      "platform": "string",
-      "profil": "User",
-      "raisonSocial": "string",
-      "secondaryAddress": "string",
-      "userId": 0
-    }
-  },
-  "fees": 0,
-  "guestReceiver": {
-    "createdAt": "2020-11-16T15:24:11.700Z",
-    "email": "string",
-    "id": 0,
-    "name": "string",
-    "tel": "string"
-  },
-  "guestSender": {
-    "createdAt": "2020-11-16T15:24:11.700Z",
-    "email": "string",
-    "id": 0,
-    "name": "string",
-    "tel": "string"
-  },
-  "operationDate": "2020-11-16T15:24:11.700Z",
-  "operationId": 0,
-  "operationType": {
-    "libelle": "string",
-    "operationTypeId": 0
-  },
-  "other": {
-    "accountId": 0,
-    "accountType": {
-      "accountTypeId": 0,
-      "libelle": "string"
-    },
-    "activationCode": "string",
-    "active": true,
-    "country": "string",
-    "createDate": "2020-11-16T15:24:11.700Z",
-    "currency": "string",
-    "expire": "2020-11-16T15:24:11.700Z",
-    "idNational": "string",
-    "msisdn": "string",
-    "nomEntreprise": "string",
-    "numero": "string",
-    "pin": "string",
-    "rccm": "string",
-    "solde": 0,
-    "soldeEntreprise": 0,
-    "updateDate": "2020-11-16T15:24:11.700Z",
-    "user": {
-      "actif": true,
-      "activationCode": "string",
-      "address": "string",
-      "blacklist": true,
-      "creationDate": "2020-11-16T15:24:11.700Z",
-      "email": "string",
-      "firstName": "string",
-      "lastLogin": "2020-11-16T15:24:11.700Z",
-      "lastName": "string",
-      "msisdn": "string",
-      "nickName": "string",
-      "nombre": 0,
-      "pays": "string",
-      "platform": "string",
-      "profil": "User",
-      "raisonSocial": "string",
-      "secondaryAddress": "string",
-      "userId": 0
-    }
-  },
-  "receiver": "string",
-  "reference": "string",
-  "status": "string"
 }
 ```
 
@@ -245,7 +99,7 @@ This endpoint is used to made a payment (Account to Account transfer)
 
 ### HTTP Request
 
-`POST http://51.38.42.38:8080/ws/operation/transfer`
+`POST http://51.38.42.38:8080/ws/partner/transfer`
 
 ### Query Parameters
 
@@ -263,9 +117,9 @@ description | false | string | description
 ## make a deposit
 
 ```shell
-curl -X POST "http://51.38.42.38:8080/ws/operation/deposit" -H "accept: application/json" \
+curl -X POST "http://51.38.42.38:8080/ws/partner/deposit" -H "accept: application/json" \
  -H "Content-Type: application/json" -H "Authorization: Bearer jwttoken" \ 
- -d "{ \"sender\": \"string\", \"account\": \"string\", \"operationType\":0, \"amount\": 0,\"currency\": \"string\", \ 
+ -d "{ \"sender\": \"string\", \"receiver\": \"string\", \"operationType\":0, \"amount\": 0,\"currency\": \"string\", \ 
  \"feesIn\": \"false\",\"date\": \"2020-11-03T13:36:03\",\"description\": \"string\"}"
 ```
 
@@ -273,165 +127,19 @@ curl -X POST "http://51.38.42.38:8080/ws/operation/deposit" -H "accept: applicat
 
 ```json
 {
-  "account": {
-    "accountId": 0,
-    "accountType": {
-      "accountTypeId": 0,
-      "libelle": "string"
-    },
-    "activationCode": "string",
-    "active": true,
-    "country": "string",
-    "createDate": "2020-11-16T15:24:11.700Z",
-    "currency": "string",
-    "expire": "2020-11-16T15:24:11.700Z",
-    "idNational": "string",
-    "msisdn": "string",
-    "nomEntreprise": "string",
-    "numero": "string",
-    "pin": "string",
-    "rccm": "string",
-    "solde": 0,
-    "soldeEntreprise": 0,
-    "updateDate": "2020-11-16T15:24:11.700Z",
-    "user": {
-      "actif": true,
-      "activationCode": "string",
-      "address": "string",
-      "blacklist": true,
-      "creationDate": "2020-11-16T15:24:11.700Z",
-      "email": "string",
-      "firstName": "string",
-      "lastLogin": "2020-11-16T15:24:11.700Z",
-      "lastName": "string",
-      "msisdn": "string",
-      "nickName": "string",
-      "nombre": 0,
-      "pays": "string",
-      "platform": "string",
-      "profil": "User",
-      "raisonSocial": "string",
-      "secondaryAddress": "string",
-      "userId": 0
+    "operationId": 235,
+    "reference": "Z99G4VSEI0",
+    "amount": 200,
+    "fees": 10,
+    "description": "test usd",
+    "operationDate": "2020-10-29T05:14:07.000+0000",
+    "status": "SUCCESS",
+    "sender": "9876543",
+    "receiver": "0200000001",
+    "operationType": {
+        "operationTypeId": 3,
+        "libelle": "M-Mpata vers M-Mpata"
     }
-  },
-  "administrator": "string",
-  "amount": 0,
-  "arrivee": "string",
-  "bulk": true,
-  "bulkId": "string",
-  "bulkPayment": 0,
-  "codeSms": "string",
-  "depart": "string",
-  "description": "string",
-  "entreprise": {
-    "accountId": 0,
-    "accountType": {
-      "accountTypeId": 0,
-      "libelle": "string"
-    },
-    "activationCode": "string",
-    "active": true,
-    "country": "string",
-    "createDate": "2020-11-16T15:24:11.700Z",
-    "currency": "string",
-    "expire": "2020-11-16T15:24:11.700Z",
-    "idNational": "string",
-    "msisdn": "string",
-    "nomEntreprise": "string",
-    "numero": "string",
-    "pin": "string",
-    "rccm": "string",
-    "solde": 0,
-    "soldeEntreprise": 0,
-    "updateDate": "2020-11-16T15:24:11.700Z",
-    "user": {
-      "actif": true,
-      "activationCode": "string",
-      "address": "string",
-      "blacklist": true,
-      "creationDate": "2020-11-16T15:24:11.700Z",
-      "email": "string",
-      "firstName": "string",
-      "lastLogin": "2020-11-16T15:24:11.700Z",
-      "lastName": "string",
-      "msisdn": "string",
-      "nickName": "string",
-      "nombre": 0,
-      "pays": "string",
-      "platform": "string",
-      "profil": "User",
-      "raisonSocial": "string",
-      "secondaryAddress": "string",
-      "userId": 0
-    }
-  },
-  "fees": 0,
-  "guestReceiver": {
-    "createdAt": "2020-11-16T15:24:11.700Z",
-    "email": "string",
-    "id": 0,
-    "name": "string",
-    "tel": "string"
-  },
-  "guestSender": {
-    "createdAt": "2020-11-16T15:24:11.700Z",
-    "email": "string",
-    "id": 0,
-    "name": "string",
-    "tel": "string"
-  },
-  "operationDate": "2020-11-16T15:24:11.700Z",
-  "operationId": 0,
-  "operationType": {
-    "libelle": "string",
-    "operationTypeId": 0
-  },
-  "other": {
-    "accountId": 0,
-    "accountType": {
-      "accountTypeId": 0,
-      "libelle": "string"
-    },
-    "activationCode": "string",
-    "active": true,
-    "country": "string",
-    "createDate": "2020-11-16T15:24:11.700Z",
-    "currency": "string",
-    "expire": "2020-11-16T15:24:11.700Z",
-    "idNational": "string",
-    "msisdn": "string",
-    "nomEntreprise": "string",
-    "numero": "string",
-    "pin": "string",
-    "rccm": "string",
-    "solde": 0,
-    "soldeEntreprise": 0,
-    "updateDate": "2020-11-16T15:24:11.700Z",
-    "user": {
-      "actif": true,
-      "activationCode": "string",
-      "address": "string",
-      "blacklist": true,
-      "creationDate": "2020-11-16T15:24:11.700Z",
-      "email": "string",
-      "firstName": "string",
-      "lastLogin": "2020-11-16T15:24:11.700Z",
-      "lastName": "string",
-      "msisdn": "string",
-      "nickName": "string",
-      "nombre": 0,
-      "pays": "string",
-      "platform": "string",
-      "profil": "User",
-      "raisonSocial": "string",
-      "secondaryAddress": "string",
-      "userId": 0
-    }
-  },
-  "receiver": "string",
-  "reference": "string",
-  "status": "string"
 }
 ```
 
@@ -439,7 +147,7 @@ This endpoint is used to make a deposit a E-mpata user account.
 
 ### HTTP Request
 
-`POST http://51.38.42.38:8080/ws/operation/deposit`
+`POST http://51.38.42.38:8080/ws/deposit/deposit`
 
 ### Query Parameters
 
