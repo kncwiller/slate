@@ -147,7 +147,7 @@ This endpoint is used to make a deposit a E-mpata user account.
 
 ### HTTP Request
 
-`POST http://51.38.42.38:8080/ws/deposit/deposit`
+`POST http://51.38.42.38:8080/ws/partner/deposit`
 
 ### Query Parameters
 
