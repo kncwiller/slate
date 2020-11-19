@@ -20,13 +20,12 @@ code_clipboard: true
 
 Welcome in e-Mpata API! You can use this API endpoints to made differents payment operations via your e-Mpata wallet.
 
-##Required step
-
-1. Create your partner's account <a href='https://empata.snedac.com'>Here</a> to obtain your credentials
-2. Contact us via e-mail address christopher.osei@hologram.cd to obtain your API key
-
 You will found below examples with differents programmation languages like Shell, Java and JavaScript! You can view the example code in the dark right zone.
 
+###Required steps
+
+1. Create your partner's account <a href='https://empata.snedac.com' target='_blank'>Here</a> to obtain your credentials
+2. Contact us via e-mail address <b>christopher.osei@hologram.cd</b> to obtain your API key
 
 # Environment
 
@@ -48,13 +47,11 @@ curl -X POST "${EMPATA_SERVER_URL}/authenticate" \
  -H "accept: application/json" \
  -H "Content-Type: application/json" \ 
  -d \
- ```json
  { 
 	"application": "meowmeowmeow", 
 	"password": "mysecret",
 	"username": "user@partner.com"
  }
- ```
 ```
 
 > The code above return a JSON content structured like below:
@@ -73,7 +70,7 @@ e-Mpata uses a JWT token to authorize his API access. The authenticate endpoint 
 
 ### Query Parameters
 
-Parameter | Rquired | Description
+Parameter | Required | Description
 --------- | ------- | -----------
 application | Yes | Your API Key given by e-Mpata
 password | Yes | Your e-Mmpata's account password
