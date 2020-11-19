@@ -95,7 +95,8 @@ The generated token time to live is 05 hours.
 ```shell
 curl -X POST "${EMPATA_SERVER_URL}/partner/transfer" \
  -H "accept: application/json" \
- -H "Content-Type: application/json" -H "Authorization: Bearer jwttoken" \ 
+ -H "Content-Type: application/json" \
+ -H "Authorization: Bearer jwttoken" \ 
  -d \
  { 
 	"sender": "string",
@@ -139,8 +140,8 @@ This endpoint is used to made a payment (Account to Account transfer)
 
 Parameter | Required | Type | Description
 --------- | ------- | ----------------- | -------------
-sender | Yes | string | sender’s account number/phone number (merchant)
-receiver | Yes | string | receiver’s account number/phone number (your customer)
+sender | Yes | string | sender's account number/phone number (Account to debit)
+receiver | Yes | string | receiver’s account number/phone number (Account to credit)
 operationType | Yes | int | operation type id. value is 3
 amount | Yes | double | amount to pay
 currency | Yes | string | payment currency iso code (CDF, USD). Default value: CDF
@@ -153,7 +154,8 @@ description | false | string | description
 ```shell
 curl -X POST "${EMPATA_SERVER_URL}/partner/deposit" \
  -H "accept: application/json" \
- -H "Content-Type: application/json" -H "Authorization: Bearer jwttoken" \ 
+ -H "Content-Type: application/json" \
+ -H "Authorization: Bearer jwttoken" \ 
  -d \
  { 
 	"sender": "string",
@@ -197,8 +199,8 @@ This endpoint is used to make a deposit a E-mpata user account.
 
 Parameter | Required | Type | Description
 --------- | ------- | ----------------- | -------------
-sender | Yes | string | sender’s account number/phone number (merchant)
-account | Yes | string | receiver’s account number/phone number (your customer)
+sender | Yes | string | sender’s account number/phone number
+receiver | Yes | string | receiver’s account number/phone number (Account to credit)
 operationType | Yes | int | operation type id. value is 1
 amount | Yes | double | deposit amount
 currency | Yes | string | payment currency iso code(CDF, USD). Default value: CDF
