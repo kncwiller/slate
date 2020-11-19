@@ -18,9 +18,24 @@ code_clipboard: true
 
 # Introduction
 
-Welcome in Empata API! You can use this API endpoints to made differents payment operations via your Empata wallet.
+Welcome in e-Mpata API! You can use this API endpoints to made differents payment operations via your e-Mpata wallet.
+
+##Required step
+
+1. Create your partner's account <a href='https://empata.snedac.com'>Here</a> to obtain your credentials
+2. Contact us via e-mail address christopher.osei@hologram.cd to obtain your API key
 
 You will found below examples with differents programmation languages like Shell, Java and JavaScript! You can view the example code in the dark right zone.
+
+
+# Environment
+
+e-Mpata offers 2 environments to his partners, a Sandbox environment to test and validate their workflow and a Live one to made a real operations.
+
+Environment | EMPATA_SERVER_URL 
+--------- | ------------------
+Sandbox | http://51.38.42.38/ws
+Live | https://empata.snedac.com/ws
 
 # Authentication
 
@@ -29,9 +44,17 @@ You will found below examples with differents programmation languages like Shell
 > To authenticate, use this code:
 
 ```shell
-curl -X POST "http://51.38.42.38:8080/ws/authenticate" -H "accept: application/json" \
+curl -X POST "${EMPATA_SERVER_URL}/authenticate" \
+ -H "accept: application/json" \
  -H "Content-Type: application/json" \ 
- -d "{ \"application\": \"meowmeowmeow\", \"password\": \"mysecret\", \"username\": \"user@partner.com\"}"
+ -d \
+ ```json
+ { 
+	"application": "meowmeowmeow", 
+	"password": "mysecret",
+	"username": "user@partner.com"
+ }
+ ```
 ```
 
 > The code above return a JSON content structured like below:
@@ -42,7 +65,7 @@ curl -X POST "http://51.38.42.38:8080/ws/authenticate" -H "accept: application/j
 }
 ```
 
-Empata uses a JWT token to authorize his API access. The authenticate endpoint permit to obtain this token, to get it, you need to fill in a POST request with below parameters.
+e-Mpata uses a JWT token to authorize his API access. The authenticate endpoint permit to obtain this token, to get it, you need to fill in a POST request with below parameters.
 
 ### HTTP Request
 
@@ -52,11 +75,11 @@ Empata uses a JWT token to authorize his API access. The authenticate endpoint p
 
 Parameter | Rquired | Description
 --------- | ------- | -----------
-application | Yes | Your API Key given by Empata
-password | Yes | Your Empata's account password
-username | Yes | Your Empata's account email
+application | Yes | Your API Key given by e-Mpata
+password | Yes | Your e-Mmpata's account password
+username | Yes | Your e-Mpata's account email
 
-Empata expect a JWT token in all request's header made to his server, as below:
+e-Mpata API expect a JWT token in all request's header made to his server, as below:
 
 `Authorization: Bearer jwttoken`
 
