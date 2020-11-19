@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
-  - <a href='https://empata.snedac.com'>Sign up to obtain your credentials</a>
+  - <a href='https://empata.snedac.com/signin'>Sign up to obtain your credentials</a>
   - <a href='#'>Please contact us to obtain your API key</a>
 
 includes:
@@ -24,7 +24,7 @@ You will found below examples with differents programmation languages like Shell
 
 ###Required steps
 
-1. Create your partner's account <a href='https://empata.snedac.com' target='_blank'>Here</a> to obtain your credentials
+1. Create your partner's account <a href='https://empata.snedac.com/signin' target='_blank'>Here</a> to obtain your credentials
 2. Contact us via e-mail address <b>christopher.osei@hologram.cd</b> to obtain your API key
 
 <aside class="notice">

@@ -1,6 +1,6 @@
 # Errors
 
-The E-mpata API uses the following error codes:
+The e-Mpata API uses the following error codes:
 
 
 Error Code | Meaning
