@@ -26,12 +26,12 @@ You will found below examples with differents programmation languages like Shell
 
 * Sandbox
 
-    1. Create your partner's account <a href='https://uat.e-mpata.snedac.com/signin' target='_blank'>Here</a> to obtain your test credentials
+    1. Create your partner's account <a href='https://uat.e-mpata.snedac.com/signin' target='_blank'>Here</a> to obtain your test credentials<br/>
     2. Contact us via e-mail address **christopher.osei@hologram.cd** to obtain your Sandbox API key
 
 * Live
 
-    1. Create your partner's account <a href='https://empata.snedac.com/signin' target='_blank'>Here</a> to obtain your Live credentials
+    1. Create your partner's account <a href='https://empata.snedac.com/signin' target='_blank'>Here</a> to obtain your Live credentials<br/>
     2. Contact us via e-mail address **christopher.osei@hologram.cd** to obtain your Live API key
 
 <aside class="notice">
