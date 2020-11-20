@@ -22,17 +22,17 @@ Welcome in e-Mpata secure API! You can use this API endpoints to made differents
 
 You will found below examples with differents programmation languages like Shell, Java and JavaScript! You can view the example code in the dark right zone.
 
-##Required steps
+###Required steps
 
-###Sandbox
+1. Sandbox
 
-1. Create your partner's account <a href='https://uat.e-mpata.snedac.com/signin' target='_blank'>Here</a> to obtain your test credentials
-2. Contact us via e-mail address <b>christopher.osei@hologram.cd</b> to obtain your Sandbox API key
+1.1. Create your partner's account <a href='https://uat.e-mpata.snedac.com/signin' target='_blank'>Here</a> to obtain your test credentials
+1.2. Contact us via e-mail address <b>christopher.osei@hologram.cd</b> to obtain your Sandbox API key
 
-###Live
+2. Live
 
-1. Create your partner's account <a href='https://empata.snedac.com/signin' target='_blank'>Here</a> to obtain your Live credentials
-2. Contact us via e-mail address <b>christopher.osei@hologram.cd</b> to obtain your Live API key
+2.1. Create your partner's account <a href='https://empata.snedac.com/signin' target='_blank'>Here</a> to obtain your Live credentials
+2.2. Contact us via e-mail address <b>christopher.osei@hologram.cd</b> to obtain your Live API key
 
 <aside class="notice">
 The only format supported by API to exchange data is JSON format.
