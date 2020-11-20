@@ -18,7 +18,7 @@ code_clipboard: true
 
 # Introduction
 
-Welcome in e-Mpata API! You can use this API endpoints to made differents payment operations via your e-Mpata wallet.
+Welcome in e-Mpata secure API! You can use this API endpoints to made differents payment operations via your e-Mpata wallet.
 
 You will found below examples with differents programmation languages like Shell, Java and JavaScript! You can view the example code in the dark right zone.
 
@@ -37,7 +37,7 @@ e-Mpata offers 2 environments to his partners, a Sandbox environment to test and
 
 Environment | EMPATA_SERVER_URL 
 --------- | ------------------
-Sandbox | http://51.38.42.38/ws
+Sandbox | https://uat.e-mpata.snedac.com/ws
 Live | https://empata.snedac.com/ws
 
 # Authentication
