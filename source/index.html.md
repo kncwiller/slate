@@ -24,7 +24,7 @@ You will found below examples with differents programmation languages like Shell
 
 ###Required steps
 
-1. Create your partner's account <a href='https://empata.snedac.com/signin' target='_blank'>Here</a> or <a href='https://uat.e-mpata.snedac.com/signin' target='_blank'>There (for Sandbox)</a>to obtain your credentials
+1. Create your partner's account <a href='https://empata.snedac.com/signin' target='_blank'>Here</a> or <a href='https://uat.e-mpata.snedac.com/signin' target='_blank'>There</a> (for Sandbox) to obtain your credentials
 2. Contact us via e-mail address <b>christopher.osei@hologram.cd</b> to obtain your API key
 
 <aside class="notice">
