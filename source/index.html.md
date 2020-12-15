@@ -18,7 +18,7 @@ code_clipboard: true
 
 # Introduction
 
-Welcome in e-Mpata secure API! You can use this API endpoints to made differents payment operations via your e-Mpata wallet.
+Welcome to e-Mpata secure API! You can use this API endpoints to made differents payment operations via your e-Mpata wallet.
 
 You will found below examples with differents programmation languages like Shell, Java and JavaScript! You can view the example code in the dark right zone.
 
@@ -44,8 +44,8 @@ e-Mpata offers 2 environments to his partners, a Sandbox environment to test and
 
 Environment | EMPATA_SERVER_URL 
 --------- | ------------------
-Sandbox | https://uat.e-mpata.snedac.com/ws
-Live | https://empata.snedac.com/ws
+Sandbox | https://dev.e-mpata.snedac.com/ws
+Live | https://api.e-mpata.snedac.com/ws
 
 # Authentication
 
@@ -84,7 +84,7 @@ e-Mpata uses a JWT token to authorize his API access. The authenticate endpoint 
 Parameter | Required | Description
 --------- | ------- | -----------
 application | Yes | Your API Key given by e-Mpata
-password | Yes | Your e-Mmpata's account password
+password | Yes | Your e-Mpata's account password
 username | Yes | Your e-Mpata's account email
 
 e-Mpata API expect a JWT token in all request's header made to his server, as below:
