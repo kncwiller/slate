@@ -215,3 +215,74 @@ feesIn | Yes | boolean | true/false (fees include in transaction amount or not)
 date | Yes | Date | merchant operation date. format: yyyy-MM-ddTHH:mm:ss
 description | false | string | description
 
+## make a cash to cash operation
+
+```shell
+curl -X POST "${EMPATA_SERVER_URL}/partner/standard/transfert" \
+ -H "accept: application/json" \
+ -H "Content-Type: application/json" \
+ -H "Authorization: Bearer jwttoken" \ 
+ -d \
+ {
+	"amount": 8000,
+	"date": "2021-01-11T10:01:14",
+	"description": "partner test",
+	"feesIn": false,
+	"currency":"CDF",
+	"operationType": 14,
+	"receiverEmail": "receiver@test.com",
+	"senderEmail": "sender@test.com",
+	"enterpriseId": 5,
+	"receiverName": "Faly Kindu",
+	"senderName": "Hassane",
+	"receiverPhone": "698029075",
+	"senderPhone": "675330990"
+ }
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "operationId": 281,
+    "reference": "SQWXC7NZFO",
+    "amount": 8000,
+    "fees": 500,
+    "description": "partner test",
+    "operationDate": "2021-01-11T10:01:14.000+0000",
+    "status": "WAITING_WITHDRAW",
+    "sender": "8765343",
+    "receiver": null,
+    "operationType": {
+        "operationTypeId": 14,
+        "libelle": "Transfert standard",
+        "category": null,
+        "hasFees": null,
+        "active": true
+    }
+}
+```
+
+This endpoint is used to make a deposit a E-mpata user account.
+
+### HTTP Request
+
+`POST ${EMPATA_SERVER_URL}/partner/standard/transfert`
+
+### Query Parameters
+
+Parameter | Required | Type | Description
+--------- | ------- | ----------------- | -------------
+senderName | Yes | string | sender’s name
+senderPhone | Yes | string | sender's phone number
+senderEmail | No | string | sender's email address
+receiverName | Yes | string | receiver’s name
+receiverPhone | Yes | string | receiver’s phone number
+receiverEmail | No | string | receiver’s email address
+operationType | Yes | int | operation type identifier
+amount | Yes | double | operation amount
+currency | Yes | string | payment currency iso code. Default value is CDF
+feesIn | Yes | boolean | true/false (fees included in transaction amount or not)
+date | Yes | Date | merchant operation date. format: yyyy-MM-ddTHH:mm:ss
+description | false | string | description
+
