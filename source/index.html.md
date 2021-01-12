@@ -47,6 +47,26 @@ Environment | EMPATA_SERVER_URL
 Sandbox | https://dev.e-mpata.snedac.com/ws
 Live | https://api.e-mpata.snedac.com/ws
 
+# Supported Currency
+
+e-Mpata deal with 02 currencies at the moment, it's required to set the currency ISO value in each operation.
+
+Currency | ISO Value 
+--------- | ------------------
+Franc Congolais | CDF
+Dollar US | USD
+
+# Supported Operation Type
+
+e-Mpata use an unique identifier for each type of operation
+
+Operation Type | ID 
+--------- | ------------------
+Account to Account | 3
+Cash to Wallet | 4
+Cash to Cash | 14
+Withdraw | 15
+
 # Authentication
 
 ##Obtain your JWT key
@@ -96,7 +116,8 @@ The generated token time to live is 05 hours.
 </aside>
 
 # Operations
-## Account to account
+
+## Account to Account
 
 ```shell
 curl -X POST "${EMPATA_SERVER_URL}/partner/transfer" \
@@ -105,14 +126,13 @@ curl -X POST "${EMPATA_SERVER_URL}/partner/transfer" \
  -H "Authorization: Bearer jwttoken" \ 
  -d \
  { 
-	"sender": "string",
-	"receiver": "string",
-	"operationType":0,
-	"amount": 0,
-	"currency": "string",
-	"feesIn":false,
-	"date": "2020-11-03T13:36:03",
-	"description": "string"
+   "amount": 1000,
+   "date": "2021-01-11T10:01:14",
+   "description": "partner test",
+   "feesIn": false,
+   "currency":"CDF",
+   "operationType": 3,
+   "receiver": "0200000003"
  }
 ```
 
@@ -120,18 +140,24 @@ curl -X POST "${EMPATA_SERVER_URL}/partner/transfer" \
 
 ```json
 {
-    "operationId": 235,
-    "reference": "Z99G4VSEI0",
-    "amount": 200,
-    "fees": 10,
-    "description": "test usd",
-    "operationDate": "2020-10-29T05:14:07.000+0000",
+    "operationId": 284,
+    "reference": "G7YHVBUKRA",
+    "amount": -1000,
+    "fees": 0,
+    "currency": "CDF",
+    "description": "partner test",
+    "operationDate": "2021-01-11T10:01:14.000+0000",
     "status": "SUCCESS",
-    "sender": "9876543",
-    "receiver": "0200000001",
+    "sender": "8765343",
+    "receiver": "0200000003",
+    "from": null,
+    "to": null,
     "operationType": {
         "operationTypeId": 3,
-        "libelle": "M-Mpata vers M-Mpata"
+        "libelle": "M-Mpata vers M-Mpata",
+        "category": null,
+        "hasFees": null,
+        "active": true
     }
 }
 ```
@@ -146,32 +172,30 @@ This endpoint is used to made a payment (Account to Account transfer)
 
 Parameter | Required | Type | Description
 --------- | ------- | ----------------- | -------------
-sender | Yes | string | sender's account number/phone number (Account to debit)
 receiver | Yes | string | receiver’s account number/phone number (Account to credit)
-operationType | Yes | int | operation type id. value is 3
+operationType | Yes | int | operation type idenfier. See Operation Type Section above
 amount | Yes | double | amount to pay
-currency | Yes | string | payment currency iso code (CDF, USD). Default value: CDF
+currency | Yes | string | payment currency iso code. Default value: CDF
 feesIn | Yes | boolean | true/false (fees include in transaction amount or not)
 date | Yes | Date | merchant operation date. format: yyyy-MM-ddTHH:mm:ss
 description | false | string | description
 
-## Deposit
+## Cash to Wallet
 
 ```shell
-curl -X POST "${EMPATA_SERVER_URL}/partner/deposit" \
+curl -X POST "${EMPATA_SERVER_URL}/partner/transfert/external" \
  -H "accept: application/json" \
  -H "Content-Type: application/json" \
  -H "Authorization: Bearer jwttoken" \ 
  -d \
  { 
-	"sender": "string",
-	"receiver": "string",
-	"operationType":0,
-	"amount": 0,
-	"currency": "string",
-	"feesIn":false,
-	"date": "2020-11-03T13:36:03",
-	"description": "string"
+   "amount": 1000,
+   "date": "2021-01-11T10:01:14",
+   "description": "partner test",
+   "feesIn": false,
+   "currency":"CDF",
+   "operationType": 4,
+   "receiver": "0200000003"
  }
 ```
 
@@ -179,40 +203,45 @@ curl -X POST "${EMPATA_SERVER_URL}/partner/deposit" \
 
 ```json
 {
-    "operationId": 235,
-    "reference": "Z99G4VSEI0",
-    "amount": 200,
-    "fees": 10,
-    "description": "test usd",
-    "operationDate": "2020-10-29T05:14:07.000+0000",
+    "operationId": 285,
+    "reference": "G7YHVBUKRA",
+    "amount": -1000,
+    "fees": 0,
+    "currency": "CDF",
+    "description": "partner test",
+    "operationDate": "2021-01-11T10:01:14.000+0000",
     "status": "SUCCESS",
-    "sender": "9876543",
-    "receiver": "0200000001",
+    "sender": "8765343",
+    "receiver": "0200000003",
+    "from": null,
+    "to": null,
     "operationType": {
-        "operationTypeId": 1,
-        "libelle": "Dépot"
+        "operationTypeId": 4,
+        "libelle": "M-Mpata vers Autres",
+        "category": null,
+        "hasFees": null,
+        "active": true
     }
 }
 ```
 
-This endpoint is used to make a deposit a E-mpata user account.
+This endpoint is used to made a Cash to mobile wallet payment
 
 ### HTTP Request
 
-`POST ${EMPATA_SERVER_URL}/partner/deposit`
+`POST ${EMPATA_SERVER_URL}/partner/transfert/external`
 
 ### Query Parameters
 
 Parameter | Required | Type | Description
 --------- | ------- | ----------------- | -------------
-sender | Yes | string | sender’s account number/phone number
-receiver | Yes | string | receiver’s account number/phone number (Account to credit)
-operationType | Yes | int | operation type id. value is 1
-amount | Yes | double | deposit amount
-currency | Yes | string | payment currency iso code(CDF, USD). Default value: CDF
+receiver | Yes | string | receiver’s phone number (Mobile Wallet)
+operationType | Yes | int | operation type idenfier. See Operation Type Section above
+amount | Yes | double | amount to pay
+currency | Yes | string | payment currency iso code. Default value: CDF
 feesIn | Yes | boolean | true/false (fees include in transaction amount or not)
 date | Yes | Date | merchant operation date. format: yyyy-MM-ddTHH:mm:ss
-description | false | string | description
+description | No | string | description
 
 ## Cash to Cash
 
@@ -246,11 +275,26 @@ curl -X POST "${EMPATA_SERVER_URL}/partner/standard/transfert" \
     "reference": "SQWXC7NZFO",
     "amount": 8000,
     "fees": 500,
+	"currency": "CDF",
     "description": "partner test",
     "operationDate": "2021-01-11T10:01:14.000+0000",
     "status": "WAITING_WITHDRAW",
     "sender": "8765343",
     "receiver": null,
+	"from": {
+        "id": 2,
+        "name": "Hassane",
+        "tel": "675330990",
+        "email": "sender@test.com",
+        "createdAt": "2021-01-06T10:20:16.000+0000"
+    },
+    "to": {
+        "id": 1,
+        "name": "Faly Kindu",
+        "tel": "698029075",
+        "email": "receiver@test.com",
+        "createdAt": "2021-01-06T10:20:16.000+0000"
+    },
     "operationType": {
         "operationTypeId": 14,
         "libelle": "Transfert standard",
@@ -277,7 +321,7 @@ senderEmail | No | string | sender's email address
 receiverName | Yes | string | receiver’s name
 receiverPhone | Yes | string | receiver’s phone number
 receiverEmail | No | string | receiver’s email address
-operationType | Yes | int | operation type identifier
+operationType | Yes | int | operation type identifier. See Operation Type Section above
 amount | Yes | double | operation amount
 currency | Yes | string | payment currency iso code. Default value is CDF
 feesIn | Yes | boolean | true/false (fees included in transaction amount or not)
@@ -300,11 +344,26 @@ curl -X GET "${EMPATA_SERVER_URL}/partner/standard/withdraw/SQWXC7NZFO" \
     "reference": "59N0TAZOBM",
     "amount": -8000,
     "fees": 0,
+	"currency": "CDF",
     "description": "partner test",
     "operationDate": "2021-01-11T22:32:10.828+0000",
     "status": "WITHDRAWN",
     "sender": "0828752889",
     "receiver": null,
+	"from": {
+        "id": 2,
+        "name": "Hassane",
+        "tel": "675330990",
+        "email": "sender@test.com",
+        "createdAt": "2021-01-06T10:20:16.000+0000"
+    },
+    "to": {
+        "id": 1,
+        "name": "Faly Kindu",
+        "tel": "698029075",
+        "email": "receiver@test.com",
+        "createdAt": "2021-01-06T10:20:16.000+0000"
+    },
     "operationType": {
         "operationTypeId": 15,
         "libelle": "Retrait standard",
@@ -315,11 +374,11 @@ curl -X GET "${EMPATA_SERVER_URL}/partner/standard/withdraw/SQWXC7NZFO" \
 }
 ```
 
-This endpoint is used to get operation's details from given reference.
+This endpoint is used to get operation's details from given reference in order to pay receiver.
 
 ### HTTP Request
 
-`POST ${EMPATA_SERVER_URL}/partner/standard/withdraw/{reference}`
+`GET ${EMPATA_SERVER_URL}/partner/standard/withdraw/{reference}`
 
 ### Query Parameters
 
@@ -343,11 +402,26 @@ curl -X GET "${EMPATA_SERVER_URL}/partner/operation/find/282" \
     "reference": "59N0TAZOBM",
     "amount": -8000,
     "fees": 0,
+	"currency": "CDF",
     "description": "partner test",
     "operationDate": "2021-01-11T22:32:10.828+0000",
     "status": "WITHDRAWN",
     "sender": "0828752889",
     "receiver": null,
+	"from": {
+        "id": 2,
+        "name": "Hassane",
+        "tel": "675330990",
+        "email": "sender@test.com",
+        "createdAt": "2021-01-06T10:20:16.000+0000"
+    },
+    "to": {
+        "id": 1,
+        "name": "Faly Kindu",
+        "tel": "698029075",
+        "email": "receiver@test.com",
+        "createdAt": "2021-01-06T10:20:16.000+0000"
+    },
     "operationType": {
         "operationTypeId": 15,
         "libelle": "Retrait standard",
@@ -358,11 +432,11 @@ curl -X GET "${EMPATA_SERVER_URL}/partner/operation/find/282" \
 }
 ```
 
-This endpoint is used to get operation's details that identifier is given.
+This endpoint is used to get a specific operation's details that identifier is given.
 
 ### HTTP Request
 
-`POST ${EMPATA_SERVER_URL}/partner/operation/find/{id}`
+`GET ${EMPATA_SERVER_URL}/partner/operation/find/{id}`
 
 ### Query Parameters
 
@@ -370,7 +444,7 @@ Parameter | Required | Type | Description
 --------- | ------- | ----------------- | -------------
 id | Yes | Long | operation unique identifier
 
-## Withdraw
+## Find by reference
 
 ```shell
 curl -X GET "${EMPATA_SERVER_URL}/partner/operation/findBy/59N0TAZOBM" \
@@ -386,11 +460,26 @@ curl -X GET "${EMPATA_SERVER_URL}/partner/operation/findBy/59N0TAZOBM" \
     "reference": "59N0TAZOBM",
     "amount": -8000,
     "fees": 0,
+	"currency": "CDF",
     "description": "partner test",
     "operationDate": "2021-01-11T22:32:10.828+0000",
     "status": "WITHDRAWN",
     "sender": "0828752889",
     "receiver": null,
+	"from": {
+        "id": 2,
+        "name": "Hassane",
+        "tel": "675330990",
+        "email": "sender@test.com",
+        "createdAt": "2021-01-06T10:20:16.000+0000"
+    },
+    "to": {
+        "id": 1,
+        "name": "Faly Kindu",
+        "tel": "698029075",
+        "email": "receiver@test.com",
+        "createdAt": "2021-01-06T10:20:16.000+0000"
+    },
     "operationType": {
         "operationTypeId": 15,
         "libelle": "Retrait standard",
@@ -401,14 +490,14 @@ curl -X GET "${EMPATA_SERVER_URL}/partner/operation/findBy/59N0TAZOBM" \
 }
 ```
 
-This endpoint is used to get operation's details from given reference.
+This endpoint is used to get a specific operation's details from given reference.
 
 ### HTTP Request
 
-`POST ${EMPATA_SERVER_URL}/partner/operation/findBy/{reference}`
+`GET ${EMPATA_SERVER_URL}/partner/operation/findBy/{reference}`
 
 ### Query Parameters
 
 Parameter | Required | Type | Description
 --------- | ------- | ----------------- | -------------
-reference | Yes | string | operation unique reference generated by system   
+reference | Yes | string | operation unique reference generated by the system   
